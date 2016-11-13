@@ -13,6 +13,11 @@ public class LinkedList {
 		top = newNode;
 	}
 	
+	public Node returnNull()
+	{
+		return null;
+	}
+	
 	public void print ()
 	{
 		Node curr = top;

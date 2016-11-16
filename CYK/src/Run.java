@@ -3,12 +3,14 @@ public class Run {
 	
 	public static void main (String[] args)
 	{
-		LinkedList ll = new LinkedList ();
-		Node newNode = new Node ("b", "SA");
-		Node newNode2 = new Node ("a", "CA");
-		ll.add(newNode);
-		ll.add(newNode2);
-		ll.print();
+		
+		HashTable table = new HashTable();
+		table.insert("AB", "S");
+		table.insert("a", "A");
+		table.insert("a", "C");
+		table.print();
+		System.out.println(table.searchAtIndex("a","A"));
+		System.out.println(table.searchAtIndex("a","B"));
 	}
 
 }

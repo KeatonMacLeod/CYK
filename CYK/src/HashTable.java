@@ -59,6 +59,21 @@ public class HashTable {
 		return found;
 	}
 	
+	public String generatingVariables (String key)
+	{
+		String variables = "";
+		int index = hashkey(key);
+		LinkedList list = table[index];
+		Node curr = list.getTop();
+			while (curr != null)
+			{
+				variables += curr.getData();
+				curr = curr.getNext();
+			}
+			System.out.println(variables);
+		return variables;
+	}
+	
 	
 	
 	public void print ()

@@ -7,6 +7,11 @@ public class LinkedList {
 		top = null;
 	}
 	
+	public Node getTop()
+	{
+		return top;
+	}
+	
 	public void add (String s)
 	{
 		Node newNode = new Node(s);

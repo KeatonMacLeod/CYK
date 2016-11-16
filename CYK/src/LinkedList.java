@@ -1,5 +1,5 @@
-
 public class LinkedList {
+	
 	private Node top;
 	
 	public LinkedList ()
@@ -7,15 +7,26 @@ public class LinkedList {
 		top = null;
 	}
 	
-	public void add (Node newNode)
+	public void add (String s)
 	{
+		Node newNode = new Node(s);
 		newNode.setNext(top);
 		top = newNode;
 	}
 	
-	public Node returnNull()
+	public boolean search (String s)
 	{
-		return null;
+		boolean found = false;
+		Node curr = top;
+			while (curr != null && !found)
+			{
+				if (curr.getData().equals(s))
+				{
+					found = true;
+				}
+				curr = curr.getNext();
+			}
+		return found;
 	}
 	
 	public void print ()
@@ -23,7 +34,7 @@ public class LinkedList {
 		Node curr = top;
 		while (curr != null)
 		{
-			System.out.println("id: " + curr.getId() + " | Sets:" + curr.getSets());
+			System.out.println(curr.getData());
 			curr = curr.getNext();
 		}
 	}

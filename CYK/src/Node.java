@@ -1,23 +1,16 @@
-
 public class Node {
-	private String id;
-	private String sets;
+	
+	private String data;
 	private Node next;
 	
-	public Node (String nodeId, String setVariables)
+	public Node (String d)
 	{
-		id = nodeId;
-		sets = setVariables;
+		data = d;
 	}
 	
-	public String getId()
+	public String getData()
 	{
-		return id;
-	}
-	
-	public String getSets()
-	{
-		return sets;
+		return data;
 	}
 	
 	public Node getNext()

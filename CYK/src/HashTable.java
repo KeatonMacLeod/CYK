@@ -1,6 +1,6 @@
 public class HashTable {
 	
-	public static final int TABLE_SIZE = 31;
+	public static final int TABLE_SIZE = 89;
 	public static final int HORNER_VAL = 13;
 	private int size;
 	private LinkedList[] table;
@@ -12,6 +12,11 @@ public class HashTable {
 		{
 			table[i] = new LinkedList();
 		}
+	}
+	
+	public LinkedList[] getTable()
+	{
+		return table;
 	}
 	
 	public int hashkey (String s)
@@ -70,7 +75,6 @@ public class HashTable {
 				variables += curr.getData();
 				curr = curr.getNext();
 			}
-			System.out.println(variables);
 		return variables;
 	}
 	

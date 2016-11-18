@@ -30,16 +30,18 @@ public class Run {
 		printArray(array);
 	}
 	
+	//Use the input string in order to determine which sets of variables in the CFG
+	//can be used to generate the given input string for the first row.
 	static void initializeRowZero (HashTable table, Cell[][] array, String input)
 	{
-		String letter;
+		String terminal;
 		String sets;
 		
 		for (int i = 0; i < input.length(); i++)
 		{
-			letter = "" + input.charAt(i);
-			sets = table.generatingVariables(letter);
-			Cell letterCell = new Cell (letter, sets);
+			terminal = "" + input.charAt(i);
+			sets = table.variablesThatGenerateTerminal(terminal);
+			Cell letterCell = new Cell (terminal, sets);
 			array[0][i] = letterCell;
 		}
 	}
@@ -51,12 +53,12 @@ public class Run {
 			for (int c = 0; c < input.length()-r; c++)
 			{
 				cellId = input.substring(c, c+(r+1));
-				String variableSet = fillCellData(table, array, cellId);
+				String variableSet = getCellVariableSets(table, array, cellId);
 				array[r][c] = new Cell(cellId, variableSet);
 			}
 	}
 	
-	static String fillCellData(HashTable table, Cell[][]array, String cellId)
+	static String getCellVariableSets(HashTable table, Cell[][]array, String cellId)
 	{
 		String one;
 		String two;
@@ -64,41 +66,24 @@ public class Run {
 		String setVariables = "";
 		for (int i = 0; i < cellId.length()-1; i++)
 		{
-			System.out.println(cellId);
-
 			one = cellId.substring(0,i+1);
 			two = cellId.substring(i+1,cellId.length());
-			System.out.println(one + "|" + two);
-			String setOne = findCellSets(table, array, one);
-			String setTwo = findCellSets(table, array, two);
-			set = combineSets(table, array, cellId, setOne, setTwo);
+			String setOne = getCellIdVariableSet(table, array, one);
+			String setTwo = getCellIdVariableSet(table, array, two);
+			set = generateVariableSetPermutations(table, array, cellId, setOne, setTwo);
 			setVariables += set;
 		}
-		removeDuplicates(setVariables);
+		setVariables = removeDuplicates(setVariables);
 	return setVariables;
 	}
 	
-	static String findCellSets (HashTable table, Cell[][]array, String cellId)
-	{
-		String sets = "";
-		boolean found = false;
-		int r = cellId.length()-1; //The row the cellId is in.
-			for (int c = 0; c < array.length-r && !found; c++)
-			{
-				if (array[r][c] != null && (array[r][c].getId()).equals(cellId))
-				{
-					sets = array[r][c].getSets();
-				}
-			}
-		return sets;
-	}
-	
-	static String combineSets (HashTable table, Cell[][]array, String cellId, String setOne, String setTwo)
+	static String generateVariableSetPermutations (HashTable table, Cell[][]array, String cellId, String setOne, String setTwo)
 	{
 		String combined;
 		String partOne;
 		String partTwo;
 		String variableSet = "";
+
 			for (int i = 0; i < setOne.length(); i++)
 			{
 				for (int j = 0; j < setTwo.length(); j++)
@@ -106,26 +91,16 @@ public class Run {
 					partOne = "" + setOne.charAt(i);
 					partTwo = "" + setTwo.charAt(j);
 					combined = partOne + partTwo;
-					System.out.println("Combined:" + combined);
-					String variable = checkSet(table, array, combined);
-					variableSet += variable;
+					String currSet = getCombinedVariableSets(table, array, combined);
+					variableSet += currSet;
 				}
 			}
-			System.out.println("VAR SET:" + variableSet);
+			
+			variableSet = removeDuplicates(variableSet);
 			return variableSet;
 	}
 	
-	static String removeDuplicates(String input){
-	    String result = "";
-	    for (int i = 0; i < input.length(); i++) {
-	        if(!result.contains(String.valueOf(input.charAt(i)))) {
-	            result += String.valueOf(input.charAt(i));
-	        }
-	    }
-	    return result;
-	}
-	
-	static String checkSet (HashTable table, Cell[][]array, String combined)
+	static String getCombinedVariableSets (HashTable table, Cell[][]array, String combined)
 	{
 		String sets = "";
 		int index = table.hashkey(combined);
@@ -139,6 +114,32 @@ public class Run {
 		return sets;
 	}
 	
+	static String getCellIdVariableSet (HashTable table, Cell[][]array, String cellId)
+	{
+		String variableSet = "";
+		boolean found = false;
+		int r = cellId.length()-1; //The row the cellId is in.
+			for (int c = 0; c < array.length-r && !found; c++)
+			{
+				if (array[r][c] != null && (array[r][c].getId()).equals(cellId))
+				{
+					variableSet = array[r][c].getSets();
+					found = true;
+				}
+			}
+		return variableSet;
+	}
+	
+	static String removeDuplicates(String input){
+	    String result = "";
+	    for (int i = 0; i < input.length(); i++) {
+	        if(!result.contains(String.valueOf(input.charAt(i)))) {
+	            result += String.valueOf(input.charAt(i));
+	        }
+	    }
+	    return result;
+	}
+	
 	static void printArray(Cell[][] array)
 	{
 		for (int r = 0; r < array.length; r++)
@@ -148,6 +149,7 @@ public class Run {
 				{
 					System.out.print("[Row " + r + "][Col " + c + "] ");
 					array[r][c].print();
+					System.out.println();
 				}
 			}
 	}

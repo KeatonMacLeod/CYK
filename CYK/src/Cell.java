@@ -19,6 +19,26 @@ public class Cell {
 		return sets;
 	}
 	
+	public String getSetString()
+	{
+		String result = "{";
+		
+			for (int i = 0; i < sets.length(); i++)
+			{
+				if (i+1 == sets.length())
+				{
+					result += sets.charAt(i);
+				}
+				else
+				{
+					result += sets.charAt(i) + ",";
+				}
+			}
+			
+		result += "}";
+		return result;
+	}
+	
 	public void print()
 	{
 		String sets = this.getSets();
@@ -27,7 +47,7 @@ public class Cell {
 		{
 			if (i+1 == sets.length())
 			{
-				System.out.println(sets.charAt(i));
+				System.out.print(sets.charAt(i));
 			}
 			else
 			{

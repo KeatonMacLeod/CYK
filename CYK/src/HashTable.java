@@ -64,10 +64,12 @@ public class HashTable {
 		return found;
 	}
 	
-	public String generatingVariables (String key)
+	//Gets all returns a string of all the variables that can be
+	//used in order to generate the terminal in the string.
+	public String variablesThatGenerateTerminal (String terminal)
 	{
 		String variables = "";
-		int index = hashkey(key);
+		int index = hashkey(terminal);
 		LinkedList list = table[index];
 		Node curr = list.getTop();
 			while (curr != null)

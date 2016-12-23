@@ -89,6 +89,7 @@ public class HashTable {
 		{
 			curr = table[i];
 			curr.print();
+			System.out.println("----");
 		}
 	}
 }

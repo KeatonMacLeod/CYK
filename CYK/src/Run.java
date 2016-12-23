@@ -1,36 +1,19 @@
 public class Run {
 	
-	public static void main (String[] args)
+	static boolean checkInput (HashTable table, String output)
 	{
-		checkInput();
-	}
-	
-	static void checkInput ()
-	{
-		//Our grammar: 
-		//S -> AB | BC
-		//A -> BA | a
-		//B -> CC | b
-		//C -> AB | a
-		HashTable table = new HashTable();
-		table.insert("AB", "C");
-		table.insert("AB", "S");
-		table.insert("BC", "S");
-		table.insert("BA", "A");
-		table.insert("a", "C");
-		table.insert("a", "A");
-		table.insert("CC", "B");
-		table.insert("b", "B");
-
-		
-		String input = "baaba";
-		Cell[][] array = new Cell[input.length()][input.length()];
-		initializeRowZero(table, array, input);
-		fillTable(table,array,input);
+		table.print();
+		System.out.println(output);
+		boolean canBeGenerated = false;
+		Cell[][] array = new Cell[output.length()][output.length()];
+		initializeRowZero(table,array,output);
+		fillTable(table,array,output);
 		printArray(array);
-	}
+		
+		return false;
+	}		 
 	
-	//Use the input string in order to determine which sets of variables in the CFG
+	//Use the output string in order to determine which sets of variables in the CFG
 	//can be used to generate the given input string for the first row.
 	static void initializeRowZero (HashTable table, Cell[][] array, String input)
 	{

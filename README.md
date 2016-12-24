@@ -10,9 +10,9 @@ This algorithm works on simple grammars that are in Chomsky Normal Form.
 This algorithm WILL NOT WORK if you attempt to a grammar structure such as:
 
 ....
-V->saw
-N->cat
-N->roof
+V->saw |
+N->cat |
+N->roof |
 P->in
 ....
 

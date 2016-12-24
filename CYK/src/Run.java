@@ -1,5 +1,6 @@
 public class Run {
 	
+	//Performs all of the basic control flow after CYKGUI calls this method.
 	static boolean checkInput (HashTable table, String output, String startVariable)
 	{
 		boolean canBeGenerated = false;

@@ -77,15 +77,14 @@ public class CYKGUI {
 		label.setToolTipText("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 13));
-		label.setBounds(251, 132, 139, 22);
+		label.setBounds(249, 119, 139, 22);
 		frame.getContentPane().add(label);
 		
-		JLabel exampleOneLabel = new JLabel("S->A,b");
-		exampleOneLabel.setVerticalAlignment(SwingConstants.TOP);
+		JLabel exampleOneLabel = new JLabel("S->AB,BC");
 		exampleOneLabel.setToolTipText("");
 		exampleOneLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		exampleOneLabel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 11));
-		exampleOneLabel.setBounds(261, 154, 112, 22);
+		exampleOneLabel.setBounds(259, 140, 112, 22);
 		frame.getContentPane().add(exampleOneLabel);
 		
 		JLabel grammarLabel = new JLabel("Grammar");
@@ -93,25 +92,25 @@ public class CYKGUI {
 		grammarLabel.setToolTipText("");
 		grammarLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		grammarLabel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 17));
-		grammarLabel.setBounds(-12, 210, 198, 22);
+		grammarLabel.setBounds(0, 233, 198, 22);
 		frame.getContentPane().add(grammarLabel);
 		
 		JTextPane grammarPane = new JTextPane();
 		grammarPane.setBackground(new Color(248, 248, 255));
 		grammarPane.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 13));
-		grammarPane.setBounds(39, 241, 105, 143);
+		grammarPane.setBounds(36, 266, 118, 143);
 		frame.getContentPane().add(grammarPane);
 		StyledDocument grammarPaneDoc = grammarPane.getStyledDocument();
 		SimpleAttributeSet grammarPaneCenter = new SimpleAttributeSet();
 		StyleConstants.setAlignment(grammarPaneCenter, StyleConstants.ALIGN_CENTER);
 		grammarPaneDoc.setParagraphAttributes(0, grammarPaneDoc.getLength(), grammarPaneCenter, false);
 		
-		JLabel exampleTwoLabel = new JLabel("A->a,c");
+		JLabel exampleTwoLabel = new JLabel("A->BA,a");
 		exampleTwoLabel.setVerticalAlignment(SwingConstants.TOP);
 		exampleTwoLabel.setToolTipText("");
 		exampleTwoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		exampleTwoLabel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 11));
-		exampleTwoLabel.setBounds(261, 177, 112, 22);
+		exampleTwoLabel.setBounds(259, 159, 112, 22);
 		frame.getContentPane().add(exampleTwoLabel);
 		
 		JLabel outputLabel = new JLabel("Output");
@@ -119,13 +118,13 @@ public class CYKGUI {
 		outputLabel.setToolTipText("");
 		outputLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		outputLabel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 17));
-		outputLabel.setBounds(129, 210, 198, 22);
+		outputLabel.setBounds(219, 331, 198, 22);
 		frame.getContentPane().add(outputLabel);
 		
 		JTextPane outputPane = new JTextPane();
 		outputPane.setBackground(new Color(248, 248, 255));
 		outputPane.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 13));
-		outputPane.setBounds(178, 241, 105, 45);
+		outputPane.setBounds(208, 364, 219, 45);
 		frame.getContentPane().add(outputPane);
 		frame.setBounds(100, 100, 640, 459);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -139,13 +138,13 @@ public class CYKGUI {
 		startVariableLabel.setToolTipText("");
 		startVariableLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		startVariableLabel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 17));
-		startVariableLabel.setBounds(129, 307, 198, 22);
+		startVariableLabel.setBounds(219, 233, 198, 22);
 		frame.getContentPane().add(startVariableLabel);
 		
 		JTextPane startVariablePane = new JTextPane();
 		startVariablePane.setBackground(new Color(248, 248, 255));
 		startVariablePane.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 13));
-		startVariablePane.setBounds(178, 340, 105, 45);
+		startVariablePane.setBounds(266, 266, 105, 45);
 		frame.getContentPane().add(startVariablePane);
 		StyledDocument starVariablePaneDoc = startVariablePane.getStyledDocument();
 		SimpleAttributeSet startVariablePaneCenter = new SimpleAttributeSet();
@@ -157,14 +156,14 @@ public class CYKGUI {
 		resultLabel.setToolTipText("");
 		resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		resultLabel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 17));
-		resultLabel.setBounds(416, 307, 198, 22);
+		resultLabel.setBounds(439, 331, 198, 22);
 		frame.getContentPane().add(resultLabel);
 		
 		
 		JTextPane resultPane = new JTextPane();
 		resultPane.setBackground(new Color(248, 248, 255));
 		resultPane.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 13));
-		resultPane.setBounds(461, 340, 105, 45);
+		resultPane.setBounds(487, 364, 105, 45);
 		frame.getContentPane().add(resultPane);
 		StyledDocument resultPaneDoc = resultPane.getStyledDocument();
 		SimpleAttributeSet resultPaneCenter = new SimpleAttributeSet();
@@ -182,14 +181,16 @@ public class CYKGUI {
 				String grammarArray[] = grammar.split("\\r?\\n");
 				String arrow = "->";
 				for (int a = 0; a < grammarArray.length; a++)
-					System.out.print(grammarArray[a]);
+					System.out.println(grammarArray[a]);
 				
 				System.out.println();
 				
 				for (int i = 0; i < grammarArray.length; i++)
 				{
 					String grammarLine = grammarArray[i];
+					System.out.println(grammarLine);
 					String leftSideElement = grammarLine.substring(0,grammarLine.indexOf(arrow));
+					System.out.println(leftSideElement);
 					String rightSideElements = grammarLine.substring(leftSideElement.length()+arrow.length());
 					System.out.println(leftSideElement);
 					System.out.println(rightSideElements);
@@ -221,8 +222,23 @@ public class CYKGUI {
 		});
 		checkOutputButton.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 15));
 		checkOutputButton.setBackground(new Color(154, 205, 50));
-		checkOutputButton.setBounds(440, 241, 139, 35);
+		checkOutputButton.setBounds(470, 266, 133, 35);
 		frame.getContentPane().add(checkOutputButton);
+		
+		JLabel exampleThreeLabel = new JLabel("B->CC,b");
+		exampleThreeLabel.setVerticalAlignment(SwingConstants.TOP);
+		exampleThreeLabel.setToolTipText("");
+		exampleThreeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		exampleThreeLabel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 11));
+		exampleThreeLabel.setBounds(259, 177, 112, 22);
+		frame.getContentPane().add(exampleThreeLabel);
+		
+		JLabel exampleFourLabel = new JLabel("C->AB,a");
+		exampleFourLabel .setToolTipText("");
+		exampleFourLabel .setHorizontalAlignment(SwingConstants.CENTER);
+		exampleFourLabel .setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 11));
+		exampleFourLabel .setBounds(259, 192, 112, 22);
+		frame.getContentPane().add(exampleFourLabel);
 		
 
 	}

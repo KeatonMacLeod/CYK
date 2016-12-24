@@ -9,10 +9,14 @@ public class Run {
 		fillTable(table,array,output);
 		printArray(array);
 		
-		Cell check = array[output.length()-1][0];
-		String sets = check.getSets();
-		if (sets.indexOf(startVariable) > -1)
+		if (output.length() > 0)
+		{
+			Cell check = array[output.length()-1][0];
+			String sets = check.getSets();
+			if (sets.indexOf(startVariable) > -1)
 			canBeGenerated = true;
+		}
+
 		
 		return canBeGenerated;
 	}		 
@@ -78,6 +82,7 @@ public class Run {
 					partOne = "" + setOne.charAt(i);
 					partTwo = "" + setTwo.charAt(j);
 					combined = partOne + partTwo;
+					System.out.println("ONE:" + combined);
 					String currSet = getCombinedVariableSets(table, array, combined);
 					variableSet += currSet;
 				}

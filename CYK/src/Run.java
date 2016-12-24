@@ -1,16 +1,19 @@
 public class Run {
 	
-	static boolean checkInput (HashTable table, String output)
+	static boolean checkInput (HashTable table, String output, String startVariable)
 	{
-		table.print();
-		System.out.println(output);
 		boolean canBeGenerated = false;
 		Cell[][] array = new Cell[output.length()][output.length()];
 		initializeRowZero(table,array,output);
 		fillTable(table,array,output);
 		printArray(array);
 		
-		return false;
+		Cell check = array[output.length()-1][0];
+		String sets = check.getSets();
+		if (sets.indexOf(startVariable) > -1)
+			canBeGenerated = true;
+		
+		return canBeGenerated;
 	}		 
 	
 	//Use the output string in order to determine which sets of variables in the CFG

@@ -32,6 +32,7 @@ public class HashTable {
 	public void insert (String key, String data)
 	{
 		int index = hashkey(key);
+		System.out.println(key + "'s index is: " + index + "| inserted " + data);
 		table[index].add(data);
 	}
 	
@@ -87,9 +88,9 @@ public class HashTable {
 		LinkedList curr;
 		for (int i = 0; i < size; i++)
 		{
-			curr = table[i];
-			curr.print();
-			System.out.println("----");
+				curr = table[i];
+				curr.print();
+				System.out.println("----");
 		}
 	}
 }

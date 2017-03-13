@@ -19,6 +19,8 @@ P->in
 This is because the algorithm will treat every character on the right hand side separtely.
 The grammar must have only single terminals on the right hand side, along with variables.
 
+![githubscreenshotgui](https://cloud.githubusercontent.com/assets/15184861/23838265/d9be0c50-0761-11e7-89fe-dfeb73f871c5.png)
+
 How It Works:
 -------------
 

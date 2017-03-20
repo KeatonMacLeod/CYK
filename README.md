@@ -1,3 +1,6 @@
+Introduction:
+-------------
+
 Hello!
 
 The program I have implemented uses the CYK algorithm, a dynamic programming strategy,
@@ -7,17 +10,7 @@ and Formal Languages.
 
 This algorithm works on simple grammars that are in Chomsky Normal Form.
 
-This algorithm WILL NOT WORK if you attempt to a grammar structure such as:
-
-....
-V->saw |
-N->cat |
-N->roof |
-P->in
-....
-
-This is because the algorithm will treat every character on the right hand side separtely.
-The grammar must have only single terminals on the right hand side, along with variables.
+The grammar must have single variables on the left hand side, and single terminals on the right hand side.
 
 ![githubscreenshotgui](https://cloud.githubusercontent.com/assets/15184861/23838265/d9be0c50-0761-11e7-89fe-dfeb73f871c5.png)
 
